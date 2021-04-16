@@ -1,5 +1,5 @@
 description: >
-  Checkout Code from Git having test cases, execute test cases using ANT and
+  Checkout Code from Git which contains test project, execute test cases using ANT and
   publish report
 parameters:
   steps:
