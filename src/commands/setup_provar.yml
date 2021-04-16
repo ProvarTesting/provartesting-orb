@@ -27,4 +27,3 @@ steps:
 
         rm Provar_ANT_<< parameters.majorversion >>.<< parameters.minorversion
         >>.zip
-        
