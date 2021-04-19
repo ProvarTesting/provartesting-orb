@@ -8,11 +8,11 @@ parameters:
     default: []
   majorversion:
     type: string
-    default: 2.3.1
+    default: 2.1.0
     description: Major version of provar
   minorversion:
     type: string
-    default: '05'
+    default: '07'
     description: Minor version of provar
   url:
     type: string
