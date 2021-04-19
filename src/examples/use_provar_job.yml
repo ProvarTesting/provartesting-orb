@@ -9,8 +9,8 @@ usage:
   run_all:
     jobs:
       - provar/run_provar:
-          majorversion: 2.1.1
-          minorversion: '09'
+          majorversion: 2.2.0
+          minorversion: '05'
           url: download.provartesting.com
           name: running test cases using ant
           steps:
