@@ -1,5 +1,5 @@
 description: >
-  Checkout Code from Git which contains test project, execute test cases using ANT and
+  Checkout code from Git which contains a test project, execute test cases using Provar CLI, and
   publish report
 parameters:
   steps:
@@ -18,8 +18,8 @@ parameters:
     type: string
     default: download.provartesting.com
     description: >
-      URL, minus https://, from which to download the specified version of
-      provar Ant
+      URL, minus https://, from which to download the specified version of 
+      the Provar CLI
   executor:
     type: executor
     default: default
