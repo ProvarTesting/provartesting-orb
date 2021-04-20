@@ -18,7 +18,7 @@ parameters:
     type: string
     default: download.provartesting.com
     description: >
-      URL, minus https://, from which to download the specified version of 
+      URL, minus https://, from which to download the specified version of
       the Provar CLI
   executor:
     type: executor

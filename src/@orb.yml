@@ -1,7 +1,7 @@
 version: 2.1
 
 description: >
-  Test Automation for Salesforce. The only code-free, integrated automation testing tool for Salesforce. 
+  Test Automation for Salesforce. The only code-free, integrated automation testing tool for Salesforce.W
   Official Provar Orb for all your testing needs in CircleCI.
 
 # This information will be displayed in the orb registry and is not mandatory.
