@@ -26,7 +26,8 @@ usage:
         - checkout
         - provar/setup_provar
         - run:
-            command: ant -Dprovar.home="/home/circleci/project/Provar_Home" -Dtest.plan="<< parameters.test_plan >>" -Denvironment="<< parameters.environment >>" -f << parameters.project_name >>/ANT/<< parameters.build_file >>
+            command: ant -Dprovar.home="/home/circleci/project/Provar_Home" -Dtest.plan="<< parameters.test_plan >>" 
+              -Denvironment="<< parameters.environment >>" -f << parameters.project_name >>/ANT/<< parameters.build_file >>
             name: "Run Provar Tests"
         - store_test_results:
             path: "<< parameters.project_name >>/ANT/Results/JUnit html/"
