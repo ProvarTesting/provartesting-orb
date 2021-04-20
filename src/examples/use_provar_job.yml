@@ -3,7 +3,7 @@ description: |
 usage:
  version: 2.1
  orbs:
-  provar: 'provartesting/provar@dev:alpha'
+  provar: 'provartesting/provar@2.3.1'
  workflows:
   version: 2.1
   run_all:
@@ -14,6 +14,6 @@ usage:
           url: download.provartesting.com
           name: running test cases using ant
           steps:
-            - run: >-
-                ant -Dprovar.home="/home/circleci/project/Provar_Home" -f
-                DemoProject/build.xml
+            - run: 
+                command: ant -Dprovar.home="/home/circleci/project/Provar_Home" -f DemoProject/ANT/build.xml
+                name: "Run Provar Tests"

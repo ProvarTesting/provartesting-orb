@@ -3,7 +3,7 @@ description: |
 usage:
  version: 2.1
  orbs:
-  provar: 'provartesting/provar@dev:alpha'
+  provar: 'provartesting/provar@2.3.1'
  jobs:
   build:
     executor:
@@ -16,9 +16,17 @@ usage:
       build_file:
         type: string
         default: build.xml
+      test_plan:
+        type: string
+        default: "Regression"
+      environment:
+        type: string
+        default: "Dev"
     steps:
       - checkout
       - provar/setup_provar
-      - run: >-
-          ant -Dprovar.home="/home/circleci/project/Provar_Home" -f <<
-          parameters.project_name >>/<< parameters.build_file >>
+      - run: 
+          command: ant -Dprovar.home="/home/circleci/project/Provar_Home" -Dtest.plan="<< parameters.test_plan >>" -Denvironment="<< parameters.environment >>" -f << parameters.project_name >>/ANT/<< parameters.build_file >>
+          name: "Run Provar Tests"
+      - store_test_results:
+          path: "<< parameters.project_name >>/ANT/Results/JUnit html/"
