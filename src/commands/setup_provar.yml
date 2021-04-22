@@ -13,7 +13,7 @@ parameters:
     default: download.provartesting.com
     description: >
       URL, minus https://, from which to download the specified version of
-      provar Ant
+      the Provar CLI
 steps:
   - run:
       name: Download Provar_ANT.zip file and extract it into Provar_Home directory

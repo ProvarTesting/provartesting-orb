@@ -1,19 +1,19 @@
 description: |
    Running provar testing using job
 usage:
- version: 2.1
- orbs:
-  provar: 'provartesting/provar@dev:alpha'
- workflows:
   version: 2.1
-  run_all:
-    jobs:
-      - provar/run_provar:
-          majorversion: 2.3.1
-          minorversion: '05'
-          url: download.provartesting.com
-          name: running test cases using ant
-          steps:
-            - run: >-
-                ant -Dprovar.home="/home/circleci/project/Provar_Home" -f
-                DemoProject/build.xml
+  orbs:
+    provar: 'provartesting/provar@2.3.1'
+  workflows:
+    version: 2.1
+    run_all:
+      jobs:
+        - provar/run_provar:
+            majorversion: 2.3.1
+            minorversion: '05'
+            url: download.provartesting.com
+            name: running test cases using ant
+            steps:
+              - run:
+                  command: ant -Dprovar.home="/home/circleci/project/Provar_Home" -f DemoProject/ANT/build.xml
+                  name: "Run Provar Tests"
