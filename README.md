@@ -8,8 +8,25 @@ A starter template for orb projects. Build, test, and publish orbs automatically
 
 Additional READMEs are available in each directory.
 
+## Usage
 
+Example use-cases are provided on the orb [registry page](https://circleci.com/orbs/registry/orb/provartesting/provartesting-orb#usage-examples). Source for these examples can be found within the `src/examples` directory.
 
+## Known Issue
+
+You may get this error when pushing a new PR:
+```
+The dev version of ministryofjustice/hmpps@dev:alpha has expired. Dev versions of orbs are only valid for 90 days after publishing.
+```
+
+If you see this error, you need to publish a dev:alpha version manually. The fix is to run this:
+
+```
+circleci orb pack ./src | circleci orb validate -
+circleci orb pack ./src | circleci orb publish -  provartesting/provar@dev:alpha
+```
+
+You may also get an error if the `dev:alpha` version is out of date and there are config changes in the latest orb that aren't in the dev alpha version.
 ## Resources
 
 [CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/provartesting/provartesting-orb) - The official registry page of this orb for all versions, executors, commands, and jobs described.
