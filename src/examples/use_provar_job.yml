@@ -3,14 +3,14 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.4.0'
+    provar: 'provartesting/provar@2.5.0'
   workflows:
     version: 2.1
     run_all:
       jobs:
         - provar/run_provar:
-            majorversion: 2.4.0
-            minorversion: '02'
+            majorversion: 2.5.0
+            minorversion: '01'
             url: download.provartesting.com
             name: running test cases using ant
             steps:
