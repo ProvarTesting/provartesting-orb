@@ -2,11 +2,11 @@ description: Downloads and extracts provar Ant zip file
 parameters:
   majorversion:
     type: string
-    default: 2.5.0
+    default: 2.6.0
     description: Major version of provar
   minorversion:
     type: string
-    default: '01'
+    default: '02'
     description: Minor version of provar
   url:
     type: string
