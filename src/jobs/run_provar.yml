@@ -12,7 +12,7 @@ parameters:
     description: Major version of provar
   minorversion:
     type: string
-    default: '02'
+    default: '04'
     description: Minor version of provar
   url:
     type: string
