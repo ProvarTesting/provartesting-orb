@@ -3,7 +3,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.7.2'
+    provar: 'provartesting/provar@2.8.0'
   jobs:
     build:
       executor:
