@@ -6,5 +6,5 @@ description: >
 
 # This information will be displayed in the orb registry and is not mandatory.
 display:
-  home_url: "https://www.provartesting.com/documentation/"
+  home_url: "https://www.provartesting.com/documentation/devops/continuous-integration/circleci/circleci-orb/"
   source_url: "https://github.com/ProvarTesting/provartesting-orb"
