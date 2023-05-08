@@ -1,5 +1,5 @@
 description: |
-   Running provar testing using job
+   Run provar tests using job
 usage:
   version: 2.1
   orbs:
