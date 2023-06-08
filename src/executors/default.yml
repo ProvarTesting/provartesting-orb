@@ -4,7 +4,7 @@ description: >-
 parameters:
   tag:
     type: string
-    default: 8-jdk-browsers
+    default: 11-jdk-browsers
     description: >
       Specific variant of CircleCI's OpenJDK image to use:
       https://hub.docker.com/r/circleci/openjdk/tags
