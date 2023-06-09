@@ -52,7 +52,7 @@ steps:
       majorversion: << parameters.majorversion >>
       minorversion: << parameters.minorversion >>
       url: << parameters.url >>
-    # install chrome and chromedriver
+  # install chrome and chromedriver
   - browser-tools/install-chrome
   - browser-tools/install-chromedriver
   # install ant
@@ -64,8 +64,5 @@ steps:
       test_plan: << parameters.test_plan >>
       environment: << parameters.environment >>
       email_target: << parameters.email_target >>
-  # Store Test Results (JUnit and zipped report)
-  - store_test_results:
-      path: "<< parameters.project_name >>/ANT/Results/JUnit html/"
-  - store_artifacts:
-      path: << parameters.project_name >>/ANT/Results
+  - store_provar_test_results:
+      project_name: << parameters.project_name >>

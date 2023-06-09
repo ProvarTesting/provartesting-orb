@@ -1,0 +1,14 @@
+description: Stores Test Results from Test Run
+parameters:
+  project_name:
+    type: string
+    default: ProvarProject
+    description: The folder containing the Provar Automation Test Project.
+steps:
+  - store_test_results:
+      name: Store Test Results
+      path: "<< parameters.project_name >>/ANT/Results/JUnit html/"
+  - store_artifacts:
+      name: Store Test Artifacts
+      path: << parameters.project_name >>/ANT/Results
+
