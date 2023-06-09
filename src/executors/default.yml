@@ -1,9 +1,9 @@
 description: >-
-  Node-based Docker image with Java 11 and browsers like Firefox, Chrome, Explorer
+  Node-based Docker image with Java 11 and current browsers like Firefox, Chrome, Explorer
 parameters:
   tag:
     type: string
-    default: 15.0.1-browsers
+    default: current-browsers
     description: >
       Specific variant of CircleCI's Selenium Node Image:
       https://hub.docker.com/r/cimg/node

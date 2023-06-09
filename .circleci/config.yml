@@ -3,6 +3,8 @@ version: 2.1
 orbs:
   # Replace this with your own!
   provar: provartesting/provar@<<pipeline.parameters.dev-orb-version>>
+  # orb publishing dependencies
+  browser-tools: circleci/browser-tools@1.4.1
   orb-tools: circleci/orb-tools@10.0
   bats: circleci/bats@1.0
   shellcheck: circleci/shellcheck@2.0
@@ -57,6 +59,8 @@ workflows:
             - orb-tools/pack
             - bats/run
             - shellcheck/check
+            - browser-tools/install-chrome
+            - browser-tools/install-chromedriver
       # Trigger an integration workflow to test the
       # dev:${CIRCLE_SHA1:0:7} version of your orb
       - orb-tools/trigger-integration-tests-workflow:
