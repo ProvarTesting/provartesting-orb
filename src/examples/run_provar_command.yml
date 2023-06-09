@@ -25,22 +25,22 @@ usage:
           default: "Dev"
       steps:
         - checkout
-          - setup_provar:
-              majorversion: << parameters.majorversion >>
-              minorversion: << parameters.minorversion >>
-              url: << parameters.url >>
-            # install chrome and chromedriver
-          - browser-tools/install-chrome
-          - browser-tools/install-chromedriver
-          # install ant
-          - run:
-              command: sudo apt-get update -y && sudo apt-get install -y ant
-          - run_test_plans:
-              project_name: << parameters.project_name >>
-              build_file: << parameters.build_file >>
-              test_plan: << parameters.test_plan >>
-              environment: << parameters.environment >>
-              email_target: << parameters.email_target >>
-              name: "Run Provar Tests"
+        - setup_provar:
+            majorversion: << parameters.majorversion >>
+            minorversion: << parameters.minorversion >>
+            url: << parameters.url >>
+          # install chrome and chromedriver
+        - browser-tools/install-chrome
+        - browser-tools/install-chromedriver
+        # install ant
+        - run:
+            command: sudo apt-get update -y && sudo apt-get install -y ant
+        - run_test_plans:
+            project_name: << parameters.project_name >>
+            build_file: << parameters.build_file >>
+            test_plan: << parameters.test_plan >>
+            environment: << parameters.environment >>
+            email_target: << parameters.email_target >>
+            name: "Run Provar Tests"
         - store_test_results:
             path: "<< parameters.project_name >>/ANT/Results/JUnit html/"

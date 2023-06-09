@@ -69,4 +69,3 @@ steps:
       path: "<< parameters.project_name >>/ANT/Results/JUnit html/"
   - store_artifacts:
       path: << parameters.project_name >>/ANT/Results
-
