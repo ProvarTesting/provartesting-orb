@@ -34,6 +34,8 @@ jobs:
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       - provar/setup_provar
 
 workflows:
@@ -59,8 +61,6 @@ workflows:
             - orb-tools/pack
             - bats/run
             - shellcheck/check
-            - browser-tools/install-chrome
-            - browser-tools/install-chromedriver
       # Trigger an integration workflow to test the
       # dev:${CIRCLE_SHA1:0:7} version of your orb
       - orb-tools/trigger-integration-tests-workflow:
