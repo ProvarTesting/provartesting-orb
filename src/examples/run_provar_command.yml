@@ -24,8 +24,10 @@ usage:
           default: "Dev"
       steps:
         - checkout
+        # install chrome and chromedriver
         - browser-tools/install-chrome
         - browser-tools/install-chromedriver
+        # install ant
         - run:
             command: sudo apt-get update -y && sudo apt-get install -y ant
         - provar/setup_provar
