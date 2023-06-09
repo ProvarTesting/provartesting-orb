@@ -3,7 +3,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.10.6'
+    provar: 'provartesting/provar@2.10.7'
     browser-tools: circleci/browser-tools@1.4.1
   jobs:
     build:
@@ -42,5 +42,5 @@ usage:
             environment: << parameters.environment >>
             email_target: << parameters.email_target >>
             name: "Run Provar Tests"
-        - store_test_results:
-            path: "<< parameters.project_name >>/ANT/Results/JUnit html/"
+        - store_provar_test_results:
+            project_name: << parameters.project_name >>
