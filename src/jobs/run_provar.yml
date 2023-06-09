@@ -2,6 +2,10 @@ description: >
   Checkout code from Git which contains a test project, execute test cases using Provar CLI, and
   publish report
 parameters:
+  steps:
+    type: steps
+    description: Steps to execute
+    default: []
   majorversion:
     type: string
     default: 2.10.1
@@ -60,3 +64,9 @@ steps:
       test_plan: << parameters.test_plan >>
       environment: << parameters.environment >>
       email_target: << parameters.email_target >>
+  # Store Test Results (JUnit and zipped report)
+  - store_test_results:
+      path: "<< parameters.project_name >>/ANT/Results/JUnit html/"
+  - store_artifacts:
+      path: << parameters.project_name >>/ANT/Results
+
