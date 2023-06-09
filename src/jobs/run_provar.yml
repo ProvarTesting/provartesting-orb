@@ -28,6 +28,10 @@ parameters:
 executor: <<parameters.executor>>
 steps:
   - checkout
+  - browser-tools/install-chrome
+  - browser-tools/install-chromedriver
+  - run:
+      command: sudo apt-get update -y && sudo apt-get install -y ant
   - setup_provar:
       majorversion: << parameters.majorversion >>
       minorversion: << parameters.minorversion >>

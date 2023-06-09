@@ -1,13 +1,12 @@
 description: >-
-  Docker image having Java version 8, ant latest version and browsers like
-  Firefox, Chrome, Explorer
+  Node-based Docker image with Java 11 and current browsers like Firefox, Chrome, Explorer
 parameters:
   tag:
     type: string
-    default: 11-jdk-browsers
+    default: current-browsers
     description: >
-      Specific variant of CircleCI's OpenJDK image to use:
-      https://hub.docker.com/r/circleci/openjdk/tags
+      Specific variant of CircleCI's Selenium Node Image:
+      https://hub.docker.com/r/cimg/node
   working-directory:
     type: string
     default: ~/project
@@ -15,5 +14,5 @@ parameters:
       Working directory for the job using this executor:
       https://circleci.com/docs/2.0/configuration-reference/#job_name
 docker:
-  - image: 'circleci/openjdk:<< parameters.tag >>'
+  - image: 'cimg/node:<< parameters.tag >>'
 working_directory: <<parameters.working-directory>>

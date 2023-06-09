@@ -8,3 +8,7 @@ description: >
 display:
   home_url: "https://www.provartesting.com/documentation/devops/continuous-integration/circleci/circleci-orb/"
   source_url: "https://github.com/ProvarTesting/provartesting-orb"
+
+# If your orb requires other orbs, you can import them like this. Otherwise remove the "orbs" stanza.
+orbs:
+  browser-tools: circleci/browser-tools@1.4.1

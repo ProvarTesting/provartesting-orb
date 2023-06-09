@@ -3,7 +3,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.10.1'
+    provar: 'provartesting/provar@2.10.2'
   jobs:
     build:
       executor:
@@ -24,6 +24,10 @@ usage:
           default: "Dev"
       steps:
         - checkout
+        - browser-tools/install-chrome
+        - browser-tools/install-chromedriver
+        - run:
+            command: sudo apt-get update -y && sudo apt-get install -y ant
         - provar/setup_provar
         - run:
             command: ant -Dprovar.home="/home/circleci/project/Provar_Home" -Dproject.home="/home/circleci/project/<< parameters.project_name >>"
