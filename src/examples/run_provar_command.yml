@@ -3,7 +3,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.10.5'
+    provar: 'provartesting/provar@2.10.6'
     browser-tools: circleci/browser-tools@1.4.1
   jobs:
     build:
@@ -25,17 +25,22 @@ usage:
           default: "Dev"
       steps:
         - checkout
-        # install chrome and chromedriver
+        - setup_provar:
+            majorversion: << parameters.majorversion >>
+            minorversion: << parameters.minorversion >>
+            url: << parameters.url >>
+          # install chrome and chromedriver
         - browser-tools/install-chrome
         - browser-tools/install-chromedriver
         # install ant
         - run:
             command: sudo apt-get update -y && sudo apt-get install -y ant
-        - provar/setup_provar
-        - run:
-            command: ant -Dprovar.home="/home/circleci/project/Provar_Home" -Dproject.home="/home/circleci/project/<< parameters.project_name >>"
-                -Dtest.plan="<< parameters.test_plan >>" -Denvironment="<< parameters.environment >>"
-                -Demail.target=<< parameters.email_target >> -f << parameters.project_name >>/ANT/<< parameters.build_file >>
+        - run_test_plans:
+            project_name: << parameters.project_name >>
+            build_file: << parameters.build_file >>
+            test_plan: << parameters.test_plan >>
+            environment: << parameters.environment >>
+            email_target: << parameters.email_target >>
             name: "Run Provar Tests"
         - store_test_results:
             path: "<< parameters.project_name >>/ANT/Results/JUnit html/"
