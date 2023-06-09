@@ -19,15 +19,23 @@ parameters:
   project_name:
     type: string
     default: ProvarProject
+    description: The folder containing the Provar Automation Test Project.
   build_file:
     type: string
     default: build.xml
+    description: The name of the build file to execute.
   test_plan:
     type: string
     default: "Regression"
+    description: The name of the test plan to run.
   environment:
     type: string
     default: ""
+    description: The name of the test environment to run the tests against.
+  email_target:
+    type: string
+    default: noreply@test.com
+    description: The email to send the job results to.
   executor:
     type: executor
     default: default
