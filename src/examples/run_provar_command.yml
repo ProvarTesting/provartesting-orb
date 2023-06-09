@@ -3,12 +3,12 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.10.2'
+    provar: 'provartesting/provar@2.10.3'
   jobs:
     build:
       executor:
         name: provar/default
-        tag: 11-jdk-stretch-node-browsers
+        tag: cimg/node:current-browsers
       parameters:
         project_name:
           type: string
