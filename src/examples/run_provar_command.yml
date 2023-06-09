@@ -3,12 +3,13 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.10.3'
+    provar: 'provartesting/provar@2.10.4'
+    browser-tools: circleci/browser-tools@1.4.1
   jobs:
     build:
       executor:
         name: provar/default
-        tag: cimg/node:current-browsers
+        tag: current-browsers
       parameters:
         project_name:
           type: string

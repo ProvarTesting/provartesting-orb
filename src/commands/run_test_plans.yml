@@ -1,0 +1,29 @@
+description: Runs Provar test plans with parameters
+parameters:
+  project_name:
+    type: string
+    default: ProvarProject
+    description: The folder containing the Provar Automation Test Project.
+  build_file:
+    type: string
+    default: build.xml
+    description: The name of the build file to execute.
+  test_plan:
+    type: string
+    default: "Regression"
+    description: The name of the test plan to run.
+  environment:
+    type: string
+    default: ""
+    description: The name of the test environment to run the tests against.
+  email_target:
+    type: string
+    default: noreply@test.com
+    description: The email to send the job results to.
+steps:
+  - run:
+      name: Run Provar Test Plan
+      command: >
+        ant -Dprovar.home="/home/circleci/project/Provar_Home" -Dproject.home="/home/circleci/project/<< parameters.project_name >>"
+        -Dtest.plan="<< parameters.test_plan >>" -Denvironment="<< parameters.environment >>"
+        -Demail.target=<< parameters.email_target >> -f << parameters.project_name >>/ANT/<< parameters.build_file >>

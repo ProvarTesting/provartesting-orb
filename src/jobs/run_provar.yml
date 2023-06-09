@@ -2,10 +2,6 @@ description: >
   Checkout code from Git which contains a test project, execute test cases using Provar CLI, and
   publish report
 parameters:
-  steps:
-    type: steps
-    description: Steps to execute
-    default: []
   majorversion:
     type: string
     default: 2.10.1
@@ -20,6 +16,18 @@ parameters:
     description: >
       URL, minus https://, from which to download the specified version of
       the Provar CLI
+  project_name:
+    type: string
+    default: ProvarProject
+  build_file:
+    type: string
+    default: build.xml
+  test_plan:
+    type: string
+    default: "Regression"
+  environment:
+    type: string
+    default: ""
   executor:
     type: executor
     default: default
@@ -28,12 +36,19 @@ parameters:
 executor: <<parameters.executor>>
 steps:
   - checkout
-  - browser-tools/install-chrome
-  - browser-tools/install-chromedriver
-  - run:
-      command: sudo apt-get update -y && sudo apt-get install -y ant
   - setup_provar:
       majorversion: << parameters.majorversion >>
       minorversion: << parameters.minorversion >>
       url: << parameters.url >>
-  - steps: << parameters.steps >>
+    # install chrome and chromedriver
+  - browser-tools/install-chrome
+  - browser-tools/install-chromedriver
+  # install ant
+  - run:
+      command: sudo apt-get update -y && sudo apt-get install -y ant
+  - run_test_plans:
+      project_name: << parameters.project_name >>
+      build_file: << parameters.build_file >>
+      test_plan: << parameters.test_plan >>
+      environment: << parameters.environment >>
+      email_target: << parameters.email_target >>

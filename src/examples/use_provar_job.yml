@@ -3,7 +3,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.10.3'
+    provar: 'provartesting/provar@2.10.4'
   workflows:
     version: 2.1
     run_all:
@@ -12,8 +12,9 @@ usage:
             majorversion: 2.10.1
             minorversion: '05'
             url: download.provartesting.com
-            name: running test cases using ant
-            steps:
-              - run:
-                  command: ant -Dprovar.home="/home/circleci/project/Provar_Home" -f DemoProject/ANT/build.xml
-                  name: "Run Provar Tests"
+            project_name: DemoProject
+            build_file: build.xml
+            test_plan: Regression
+            environment: ""
+            email_target: noreply@example.com
+            name: "Run Provar Job that executes tests"
