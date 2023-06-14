@@ -17,4 +17,4 @@ usage:
             test_plan: Regression
             environment: ""
             email_target: noreply@example.com
-            name: "Run Provar Job that executes tests"
+            name: "Run Job that executes tests"
