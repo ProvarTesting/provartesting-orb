@@ -11,4 +11,3 @@ steps:
   - store_artifacts:
       name: Store Test Artifacts
       path: << parameters.project_name >>/ANT/Results
-
