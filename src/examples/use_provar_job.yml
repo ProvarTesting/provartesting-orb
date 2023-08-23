@@ -3,7 +3,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.11.0'
+    provar: 'provartesting/provar@2.11.1'
   workflows:
     version: 2.1
     run_all:

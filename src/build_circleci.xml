@@ -37,6 +37,7 @@
 			<planFeature name="PDF" type="OUTPUT" enabled="true"/>
 			<planFeature name="PIECHART" type="OUTPUT" enabled="true"/>
 			<planFeature name="EMAIL" type="NOTIFICATION" enabled="false"/>
+			<planFeature name="TEST_MANAGER" type="REPORTING" enabled="true"/>
 		</Run-Test-Case>
 
 	</target>
