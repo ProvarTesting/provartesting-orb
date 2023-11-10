@@ -3,14 +3,14 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.13.0'
+    provar: 'provartesting/provar@2.14.0'
   workflows:
     version: 2.1
     run_all:
       jobs:
         - provar/run_provar:
-            majorversion: 2.11.2
-            minorversion: '05'
+            majorversion: 2.11.3
+            minorversion: '09'
             url: download.provartesting.com
             project_name: DemoProject
             build_file: build.xml
