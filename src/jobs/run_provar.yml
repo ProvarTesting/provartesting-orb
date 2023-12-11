@@ -12,7 +12,7 @@ parameters:
     description: Major version of provar
   minorversion:
     type: string
-    default: '09'
+    default: '11'
     description: Minor version of provar
   url:
     type: string
@@ -54,7 +54,7 @@ steps:
       url: << parameters.url >>
   - run: sudo apt-get update # TODO: remove once chromedriver downloads are fixed
   - browser-tools/install-chrome:
-      chrome-version: 117.0.5938.149 # TODO: Remove once chromedriver downloads are fixed
+      chrome-version:  119.0.6045.105 # TODO: Remove once chromedriver downloads are fixed
       replace-existing: true
   - browser-tools/install-chromedriver
   # install ant
