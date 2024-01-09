@@ -36,7 +36,7 @@ jobs:
       # Push new changes first, before adding new tests to your config.
       - run: sudo apt-get update # TODO: remove once chromedriver downloads are fixed
       - browser-tools/install-chrome:
-          chrome-version: 119.0.6045.105 # TODO: Remove once chromedriver downloads are fixed
+          chrome-version: 120.0.6099.200 # TODO: Remove once chromedriver downloads are fixed
           replace-existing: true
       - browser-tools/install-chromedriver
       - run:
