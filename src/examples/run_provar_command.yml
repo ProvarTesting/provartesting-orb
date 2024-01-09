@@ -3,7 +3,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.14.0'
+    provar: 'provartesting/provar@2.15.0'
     browser-tools: circleci/browser-tools@1
   jobs:
     build:
@@ -27,6 +27,7 @@ usage:
         - checkout
         - setup_provar:
             majorversion: << parameters.majorversion >>
+            minorversion: << parameters.minorversion >>
             url: << parameters.url >>
           # install chrome and chromedriver
         - browser-tools/install-chrome
