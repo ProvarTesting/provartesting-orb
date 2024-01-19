@@ -20,10 +20,14 @@ parameters:
     type: string
     default: noreply@test.com
     description: The email to send the job results to.
+  license_path:
+    type: string
+    default: /home/circleci/project/ProvarProject/.licenses
+    description: The path of your Provar Execution license folder on the machine
 steps:
   - run:
       name: Run Provar Test Plan
       command: >
         ant -Dprovar.home="/home/circleci/project/Provar_Home" -Dproject.home="/home/circleci/project/<< parameters.project_name >>"
         -Dtest.plan="<< parameters.test_plan >>" -Denvironment="<< parameters.environment >>"
-        -Demail.target=<< parameters.email_target >> -f << parameters.project_name >>/ANT/<< parameters.build_file >>
+        -Demail.target=<< parameters.email_target >> -Dlicense.path=<< parameters.license_path >> -f << parameters.project_name >>/ANT/<< parameters.build_file >>

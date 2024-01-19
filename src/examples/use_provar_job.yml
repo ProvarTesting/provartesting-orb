@@ -3,7 +3,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.14.1'
+    provar: 'provartesting/provar@2.14.2'
   workflows:
     version: 2.1
     run_all:
@@ -16,4 +16,5 @@ usage:
             test_plan: Regression
             environment: ""
             email_target: noreply@example.com
+            license_path: /home/circleci/project/ProvarProject/.licenses
             name: "Run Job that executes Provar tests"
