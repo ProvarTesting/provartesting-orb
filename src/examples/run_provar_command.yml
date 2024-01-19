@@ -26,9 +26,12 @@ usage:
         license_path:
           type: string
           default: /home/circleci/project/ProvarProject/.licenses
+        email_target:
+          default: michael.dailey@provartesting.com
+          type: string
       steps:
         - checkout
-        - setup_provar:
+        - provar/setup_provar:
             majorversion: << parameters.majorversion >>
             url: << parameters.url >>
           # install chrome and chromedriver
@@ -37,13 +40,12 @@ usage:
         # install ant
         - run:
             command: sudo apt-get update -y && sudo apt-get install -y ant
-        - run_test_plans:
+        - provar/run_test_plans:
             project_name: << parameters.project_name >>
             build_file: << parameters.build_file >>
             test_plan: << parameters.test_plan >>
             environment: << parameters.environment >>
             email_target: << parameters.email_target >>
             license_path: << parameters.license_path >>
-            name: "Run Provar Tests"
-        - store_provar_test_results:
+        - provar/store_provar_test_results:
             project_name: << parameters.project_name >>
