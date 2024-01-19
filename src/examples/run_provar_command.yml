@@ -3,7 +3,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.14.1'
+    provar: 'provartesting/provar@2.14.2'
     browser-tools: circleci/browser-tools@1
   jobs:
     build:
@@ -23,6 +23,9 @@ usage:
         environment:
           type: string
           default: "Dev"
+        license_path:
+          type: string
+          default: /home/circleci/project/ProvarProject/.licenses
       steps:
         - checkout
         - setup_provar:
@@ -40,6 +43,7 @@ usage:
             test_plan: << parameters.test_plan >>
             environment: << parameters.environment >>
             email_target: << parameters.email_target >>
+            license_path: << parameters.license_path >>
             name: "Run Provar Tests"
         - store_provar_test_results:
             project_name: << parameters.project_name >>

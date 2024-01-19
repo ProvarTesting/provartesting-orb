@@ -36,6 +36,10 @@ parameters:
     type: string
     default: noreply@test.com
     description: The email to send the job results to.
+  license_path:
+    type: string
+    default: /home/circleci/project/ProvarProject/.licenses
+    description: The path of your Provar Execution license folder on the machine
   executor:
     type: executor
     default: default
@@ -61,5 +65,6 @@ steps:
       test_plan: << parameters.test_plan >>
       environment: << parameters.environment >>
       email_target: << parameters.email_target >>
+      license_path: << parameters.license_path >>
   - store_provar_test_results:
       project_name: << parameters.project_name >>
