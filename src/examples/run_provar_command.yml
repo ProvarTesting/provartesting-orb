@@ -3,7 +3,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    provar: 'provartesting/provar@2.15'
+    provar: 'provartesting/provar@2.16'
     browser-tools: circleci/browser-tools@1
   jobs:
     build:
