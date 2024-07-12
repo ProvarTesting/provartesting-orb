@@ -8,7 +8,7 @@ parameters:
     default: []
   majorversion:
     type: string
-    default: 2.13.1.1
+    default: 2.13.2
     description: Major version of provar
   url:
     type: string
