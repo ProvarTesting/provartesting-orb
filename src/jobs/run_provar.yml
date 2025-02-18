@@ -51,9 +51,7 @@ steps:
   - setup_provar:
       majorversion: << parameters.majorversion >>
       url: << parameters.url >>
-  # - run: sudo apt-get update # TODO: remove once chromedriver downloads are fixed
   - browser-tools/install-chrome:
-      # chrome-version:  119.0.6045.105 # TODO: Remove once chromedriver downloads are fixed
       replace-existing: true
   - browser-tools/install-chromedriver
   # install ant
