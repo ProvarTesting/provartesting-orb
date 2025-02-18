@@ -20,10 +20,6 @@ parameters:
     type: string
     default: ProvarProject
     description: The folder containing the Provar Automation Test Project.
-  project_path:
-    type: string
-    default: /home/circleci/ProvarProject
-    description: The absolute path where the project directory is.
   build_file:
     type: string
     default: build.xml
@@ -66,7 +62,6 @@ steps:
       test_plan: << parameters.test_plan >>
       environment: << parameters.environment >>
       email_target: << parameters.email_target >>
-      project_path: << parameters.project_path >>
       license_path: << parameters.license_path >>
   - store_provar_test_results:
       project_name: << parameters.project_name >>

@@ -14,9 +14,6 @@ usage:
         project_name:
           type: string
           default: DemoProject
-        project_path:
-          type: string
-          default: /home/circleci/ProvarProject
         build_file:
           type: string
           default: build.xml
@@ -45,7 +42,6 @@ usage:
             command: sudo apt-get update -y && sudo apt-get install -y ant
         - provar/run_test_plans:
             project_name: << parameters.project_name >>
-            project_path: << parameters.project_path >>
             build_file: << parameters.build_file >>
             test_plan: << parameters.test_plan >>
             environment: << parameters.environment >>

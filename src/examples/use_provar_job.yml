@@ -12,7 +12,6 @@ usage:
             majorversion: 2.15.1.2
             url: download.provartesting.com
             project_name: DemoProject
-            project_path: /home/circleci/ProvarProject
             build_file: build.xml
             test_plan: Regression
             environment: ""
