@@ -8,7 +8,7 @@ parameters:
     default: []
   majorversion:
     type: string
-    default: 2.14.1
+    default: 2.15.1.2
     description: Major version of provar
   url:
     type: string
@@ -20,6 +20,10 @@ parameters:
     type: string
     default: ProvarProject
     description: The folder containing the Provar Automation Test Project.
+  project_path:
+    type: string
+    default: /home/circleci/ProvarProject
+    description: The absolute path where the project directory is.
   build_file:
     type: string
     default: build.xml
@@ -51,10 +55,7 @@ steps:
   - setup_provar:
       majorversion: << parameters.majorversion >>
       url: << parameters.url >>
-  - run: sudo apt-get update # TODO: remove once chromedriver downloads are fixed
-  - browser-tools/install-chrome:
-      chrome-version:  119.0.6045.105 # TODO: Remove once chromedriver downloads are fixed
-      replace-existing: true
+  - browser-tools/install-chrome
   - browser-tools/install-chromedriver
   # install ant
   - run:
@@ -65,6 +66,7 @@ steps:
       test_plan: << parameters.test_plan >>
       environment: << parameters.environment >>
       email_target: << parameters.email_target >>
+      project_path: << parameters.project_path >>
       license_path: << parameters.license_path >>
   - store_provar_test_results:
       project_name: << parameters.project_name >>
