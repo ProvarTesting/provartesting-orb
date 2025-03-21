@@ -41,14 +41,8 @@ workflows:
             - orb-tools/lint
             - orb-tools/pack
             - shellcheck/check
-      - orb-tools/continue:
-          pipeline_number: << pipeline.number >>
-          vcs_type: << pipeline.project.type >>
-          orb_name: provartesting/provar
+      - orb-tools/trigger-integration-tests-workflow:
+          name: trigger-integration-dev
+          context: orb-publishing
           requires:
-            - orb-tools/lint
-            - orb-tools/pack
-            - shellcheck/check
             - orb-tools/publish
-          parameters:
-            run-integration-tests: true # trigger test-deploy workflow
