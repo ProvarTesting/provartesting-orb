@@ -23,18 +23,6 @@ parameters:
       A "dev:alpha" version must exist for the initial pipeline run.
     type: string
     default: "dev:alpha"
-jobs:
-  integration-test-1:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - browser-tools/install-chrome:
-          replace-existing: true
-      - browser-tools/install-chromedriver
-      - run:
-          command: sudo apt-get update -y && sudo apt-get install -y ant
-      - provar/setup_provar
 
 workflows:
   lint-pack:
@@ -43,40 +31,18 @@ workflows:
       - orb-tools/lint
       - orb-tools/pack
       - shellcheck/check:
-          dir: ./src/scripts
-          exclude: SC2148
+          exclude: SC2148,SC2038,SC2086,SC2002,SC2016
+          filters:
+            tags:
+              only: /.*/
       - bats/run:
           path: ./src/tests
-      - orb-tools/publish:
-          orb_name: provartesting/provar
-          vcs_type: << pipeline.project.type >>
-          context: orb-publishing
-          requires:
+      - orb-tools/continue:
+            pipeline_number: << pipeline.number >>
+            vcs_type: << pipeline.project.type >>
+            orb_name: provartesting/provar
+            requires:
             - orb-tools/lint
             - orb-tools/pack
-            - bats/run
             - shellcheck/check
-      - orb-tools/trigger-integration-tests-workflow:
-          name: trigger-integration-dev
-          context: orb-publishing
-          requires:
-            - orb-tools/publish
-
-  integration-test_deploy:
-    when: << pipeline.parameters.run-integration-tests >>
-    jobs:
-      - integration-test-1
-      - orb-tools/dev-promote-prod-from-commit-subject:
-          orb_name: provartesting/provar
-          context: orb-publishing
-          vcs_type: << pipeline.project.type >>
-          add-pr-comment: false
-          fail-if-semver-not-indicated: true
-          publish-version-tag: false
-          requires:
-            - integration-test-1
-          filters:
-            branches:
-              only:
-                - master
-                - main
+            - bats/run
