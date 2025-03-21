@@ -52,10 +52,10 @@ workflows:
               - orb-tools/pack
               - command-tests
             filters:
-                branches:
-                  only:
-                    - master
-                    - main
+              branches:
+                only:
+                  - master
+                  - main
 
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb_name: provartesting/provar
