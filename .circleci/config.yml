@@ -50,3 +50,5 @@ workflows:
             - orb-tools/pack
             - shellcheck/check
             - orb-tools/publish
+          parameters:
+            run-integration-tests: true # trigger test-deploy workflow
