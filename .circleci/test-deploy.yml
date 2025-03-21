@@ -1,0 +1,33 @@
+version: 2.1
+
+orbs:
+  orb-tools: circleci/orb-tools@12.3.1
+  provar: provartesting/provar@dev:<< pipeline.git.short_revision >>
+
+jobs:
+  integration-test:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          command: sudo apt-get update -y && sudo apt-get install -y ant
+      - provar/setup_provar
+
+workflows:
+  test-deploy:
+    jobs:
+      - integration-test
+      - orb-tools/dev-promote-prod-from-commit-subject:
+          orb-name: provartesting/provar
+          context: orb-publishing
+          add-pr-comment: false
+          fail-if-semver-not-indicated: true
+          publish-version-tag: false
+          requires:
+            - integration-test
+          filters:
+            branches:
+              only:
+                - master
+                - main
