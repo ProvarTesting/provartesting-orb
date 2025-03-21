@@ -42,9 +42,9 @@ workflows:
             - orb-tools/pack
             - shellcheck/check
       - orb-tools/continue:
-          pipeline-number: << pipeline.number >>
-          vcs-type: << pipeline.project.type >>
-          orb-name: provartesting/provar
+          pipeline_number: << pipeline.number >>
+          vcs_type: << pipeline.project.type >>
+          orb_name: provartesting/provar
           requires:
             - orb-tools/lint
             - orb-tools/pack
