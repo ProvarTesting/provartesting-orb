@@ -41,8 +41,26 @@ workflows:
             - orb-tools/lint
             - orb-tools/pack
             - shellcheck/check
-      - orb-tools/trigger-integration-tests-workflow:
-          name: trigger-integration-dev
+      - orb-tools/continue:
+            pipeline_number: << pipeline.number >>
+            vcs_type: << pipeline.project.type >>
+            orb_name: provartesting/provar
+            requires:
+              - orb-tools/publish
+
+  # Trigger the test-deploy.yml workflow when merged to master/main
+  integration-test-deploy:
+    when:
+      and:
+        - equal: [ true, << pipeline.parameters.run-integration-tests >> ]
+        - or:
+            - equal: [ main, << pipeline.git.branch >> ]
+            - equal: [ master, << pipeline.git.branch >> ]
+    jobs:
+      - integration-test-1
+      - orb-tools/promote:
+          orb_name: provartesting/provar
+          vcs_type: "github"
           context: orb-publishing
           requires:
-            - orb-tools/publish
+            - integration-test-1
