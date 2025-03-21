@@ -6,6 +6,8 @@ orbs:
   orb-tools: circleci/orb-tools@12.3.1
   shellcheck: circleci/shellcheck@2.0
   bats: circleci/bats@1.1.0
+  browser-tools: circleci/browser-tools@1.5.3
+  provar: provartesting/provar@<<pipeline.parameters.dev-orb-version>>
 
 # Pipeline Parameters
 ## These parameters are used internally by orb-tools. Skip to the Jobs section.
@@ -40,6 +42,7 @@ workflows:
           requires:
             - orb-tools/lint
             - orb-tools/pack
+            - bats/run
             - shellcheck/check
       - orb-tools/continue:
             pipeline_number: << pipeline.number >>
@@ -47,20 +50,3 @@ workflows:
             orb_name: provartesting/provar
             requires:
               - orb-tools/publish
-
-  # Trigger the test-deploy.yml workflow when merged to master/main
-  integration-test-deploy:
-    when:
-      and:
-        - equal: [ true, << pipeline.parameters.run-integration-tests >> ]
-        - or:
-            - equal: [ main, << pipeline.git.branch >> ]
-            - equal: [ master, << pipeline.git.branch >> ]
-    jobs:
-      - integration-test-1
-      - orb-tools/promote:
-          orb_name: provartesting/provar
-          vcs_type: "github"
-          context: orb-publishing
-          requires:
-            - integration-test-1

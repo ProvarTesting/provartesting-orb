@@ -2,8 +2,10 @@ version: 2.1
 
 orbs:
   orb-tools: circleci/orb-tools@12.3.1
-  provar: provartesting/provar@<<pipeline.parameters.dev-orb-version>>
+  shellcheck: circleci/shellcheck@2.0
+  bats: circleci/bats@1.1.0
   browser-tools: circleci/browser-tools@1.5.3
+  provar: provartesting/provar@<<pipeline.parameters.dev-orb-version>>
 
 # Pipeline Parameters
 ## These parameters are used internally by orb-tools. Skip to the Jobs section.
@@ -21,7 +23,7 @@ parameters:
     default: "dev:alpha"
 
 jobs:
-  integration-test-1:
+  integration-test:
     docker:
       - image: cimg/base:stable
     steps:
@@ -37,7 +39,7 @@ workflows:
   test-deploy:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - integration-test-1
+      - integration-test
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb_name: provartesting/provar
           context: orb-publishing
@@ -46,7 +48,7 @@ workflows:
           fail-if-semver-not-indicated: true
           publish-version-tag: false
           requires:
-            - integration-test-1
+            - integration-test
           filters:
             branches:
               only:
