@@ -7,14 +7,32 @@ orbs:
   shellcheck: circleci/shellcheck@2.0
   bats: circleci/bats@1.1.0
 
+# Pipeline Parameters
+## These parameters are used internally by orb-tools. Skip to the Jobs section.
+parameters:
+  run-integration-tests:
+    description: An internal flag to prevent integration test from running before a development version has been created.
+    type: boolean
+    default: false
+  dev-orb-version:
+    description: >
+      The development version of the orb to test.
+      This value is automatically adjusted by the "trigger-integration-tests-workflow" job to correspond with the specific version created by the commit and should not be edited.
+      A "dev:alpha" version must exist for the initial pipeline run.
+    type: string
+    default: "dev:alpha"
+
 workflows:
   lint-pack:
+    unless: << pipeline.parameters.run-integration-tests >>
     jobs:
       - orb-tools/lint
       - orb-tools/pack
       - shellcheck/check:
           dir: ./src/scripts
           exclude: SC2148
+      - bats/run:
+          path: ./src/tests
       - orb-tools/publish:
           orb-name: provartesting/provar
           vcs-type: << pipeline.project.type >>
