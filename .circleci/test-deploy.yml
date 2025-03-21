@@ -49,8 +49,8 @@ workflows:
             fail-if-semver-not-indicated: true
             publish-version-tag: false
             requires:
-            - orb-tools/pack
-            - command-tests
+              - orb-tools/pack
+              - command-tests
             filters:
                 branches:
                   only:
