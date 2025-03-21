@@ -34,8 +34,8 @@ workflows:
       - bats/run:
           path: ./src/tests
       - orb-tools/publish:
-          orb-name: provartesting/provar
-          vcs-type: << pipeline.project.type >>
+          orb_name: provartesting/provar
+          vcs_type: << pipeline.project.type >>
           context: orb-publishing
           requires:
             - orb-tools/lint
