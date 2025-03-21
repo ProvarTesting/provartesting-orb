@@ -53,7 +53,7 @@ workflows:
             - command-tests
             filters:
                 branches:
-                only:
+                  only:
                     - master
                     - main
 
