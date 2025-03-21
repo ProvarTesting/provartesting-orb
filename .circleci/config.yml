@@ -16,7 +16,7 @@ workflows:
       - shellcheck/check:
           dir: ./src/scripts
           exclude: SC2148
-      - orb-tools/publish-dev:
+      - orb-tools/publish:
           orb-name: provartesting/provar
           context: orb-publishing
       - orb-tools/continue:
@@ -27,4 +27,4 @@ workflows:
             - orb-tools/lint
             - orb-tools/pack
             - shellcheck/check
-            - orb-tools/publish-dev
+            - orb-tools/publish
