@@ -5,7 +5,6 @@ setup: true
 orbs:
   orb-tools: circleci/orb-tools@12.3.1
   shellcheck: circleci/shellcheck@2.0
-  browser-tools: circleci/browser-tools@1.5.3
   bats: circleci/bats@1.1.0
 
 workflows:
@@ -18,7 +17,12 @@ workflows:
           exclude: SC2148
       - orb-tools/publish:
           orb-name: provartesting/provar
+          vcs-type: << pipeline.project.type >>
           context: orb-publishing
+          requires:
+            - orb-tools/lint
+            - orb-tools/pack
+            - shellcheck/check
       - orb-tools/continue:
           pipeline-number: << pipeline.number >>
           vcs-type: << pipeline.project.type >>

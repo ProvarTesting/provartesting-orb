@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   orb-tools: circleci/orb-tools@12.3.1
   provar: provartesting/provar@dev:<< pipeline.git.short_revision >>
+  browser-tools: circleci/browser-tools@1.5.3
 
 jobs:
   integration-test:
@@ -10,6 +11,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - browser-tools/install-chrome:
+          replace-existing: true
+      - browser-tools/install-chromedriver
       - run:
           command: sudo apt-get update -y && sudo apt-get install -y ant
       - provar/setup_provar
